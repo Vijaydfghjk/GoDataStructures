@@ -1,0 +1,38 @@
+package main
+
+import "fmt"
+
+func Linear(array []int, query int) (int, error) {
+
+	for i, item := range array {
+
+		if item == query {
+
+			return i, nil
+		}
+
+	}
+
+	return -1, fmt.Errorf("ErrNotFound")
+}
+
+func main() {
+
+	var a []int = make([]int, 4)
+
+	a[0] = 1
+	a[1] = 5
+	a[2] = 4
+	v1, error := Linear(a, 5)
+
+	if error != nil {
+
+		fmt.Println("Error is :", error)
+
+	} else {
+
+		fmt.Println("value is :", v1)
+
+	}
+
+}
