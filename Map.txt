@@ -1,0 +1,55 @@
+//create two structures ,one with int and string, another struct with map,slice and first structure name.we have to create the object in the heap and copy the map in stack.
+
+package main
+
+import (
+	"fmt"
+)
+
+type Bus struct {
+	Boardingpoint string
+	ticket        int
+}
+
+func (p *Bus) travel() {
+
+	p.Boardingpoint = "Chennai"
+	p.ticket = 250
+
+}
+
+type GBus struct {
+	boardingpoit map[string]int
+	passengers   []int
+	private      Bus
+}
+
+func (p *GBus) place() {
+
+	p.boardingpoit = make(map[string]int)
+	p.boardingpoit["Chennai"] = 120
+	p.boardingpoit["Bengaluru"] = 150
+
+	p.passengers = make([]int, 2)
+	p.passengers[0] = 14
+	p.passengers[1] = 16
+
+	var v map[string]int = make(map[string]int)
+
+	p.private.travel()
+
+	for i, t := range p.boardingpoit {
+
+		v[i] = t
+	}
+
+	fmt.Println(v)
+
+}
+
+func main() {
+
+	var vj *GBus = new(GBus)
+	vj.place()
+
+}
