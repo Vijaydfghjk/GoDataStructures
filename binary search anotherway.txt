@@ -1,0 +1,53 @@
+package main
+
+import (
+	"fmt"
+)
+
+func searching(items []int, search int) {
+
+	for _, v := range items {
+
+		if v == search {
+
+			fmt.Println("founded search")
+
+		}
+
+	}
+
+}
+
+func binarysearch(items []int, search int) bool {
+
+	low := 0
+	high := len(items) - 1
+
+	for low <= high {
+
+		median := (low + high) / 2
+
+		if items[median] < search {
+
+			low = median + 1
+		} else {
+			high = median - 1
+		}
+
+	}
+	if low == len(items) || items[low] != search {  // items[low] 4 ! = search 4 any here matching so function return true
+
+		return false
+	}
+	return true
+}
+
+func main() {
+
+	var a []int = []int{1, 2, 3, 4}
+
+	searching(a, 2)
+
+	v1 := binarysearch(a, 4)
+	fmt.Println(v1)
+}
