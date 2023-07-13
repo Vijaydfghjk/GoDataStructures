@@ -29,3 +29,11 @@ func main() {
 	}
 	fmt.Println(n)
 }
+
+
+
+// Since isdone is initially set to false, the condition !isdone evaluates to true because the logical negation of false is true. Therefore, the code block following the if statement will be executed, and the output will be:
+
+// not false =0, true =1
+// !isdone here value true 
+// 
