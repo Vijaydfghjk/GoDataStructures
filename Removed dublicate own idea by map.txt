@@ -1,0 +1,30 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func Demo(a []int) {
+	k := 0
+	var value map[int]bool = make(map[int]bool)
+
+	for _, v := range a {
+
+		value[v] = true
+
+	}
+
+	for v := range value {
+
+		a[k] = v
+		k++
+	}
+	fmt.Println(a[:k])
+}
+
+func main() {
+
+	arr := []int{10, 2, 10, 3}
+	Demo(arr)
+
+}
