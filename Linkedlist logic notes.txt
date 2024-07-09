@@ -27,7 +27,7 @@ func (l *LinkedListTest) insertAtback(data int) {}
                   incase l.top has already value we have to find the nil for that below loop
 
            currect:= l.top
-           for current!= nil{
+           for current.Next!= nil{
 
                   current = current.Next
            }
