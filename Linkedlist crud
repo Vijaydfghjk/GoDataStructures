@@ -84,16 +84,17 @@ func (a *Mylist) DeleteNode(value int) {
 	if current.data == value {
 
 		a.val = current.Next
+
 		return
 	}
-	
+
 	for current != nil {
 
-		if current.data == value {
+		if current.Next != nil && current.Next.data == value {
 
-			a.val = current.Next
+			fmt.Println("Look", current.Next)
+			current.Next = current.Next.Next
 			return
-
 		}
 
 		current = current.Next
@@ -111,7 +112,7 @@ func main() {
 	//vj.Insertbefore(40)
 	vj.View()
 	//vj.filter(30)
-	vj.DeleteNode(20)
+	vj.DeleteNode(10)
 	fmt.Println("************")
 	vj.View()
 }
