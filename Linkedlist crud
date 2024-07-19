@@ -1,0 +1,117 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+	Next *Node
+}
+
+type Mylist struct {
+	val *Node
+}
+
+func (a *Mylist) InsertatBack(value int) {
+
+	mynode := &Node{data: value, Next: nil}
+
+	if a.val == nil {
+
+		a.val = mynode
+		return
+	}
+
+	current := a.val
+
+	for current.Next != nil {
+
+		current = current.Next
+	}
+
+	current.Next = mynode
+}
+
+func (a *Mylist) View() {
+
+	current := a.val
+
+	for current != nil {
+
+		fmt.Println(current.data)
+
+		current = current.Next
+	}
+
+}
+
+func (a *Mylist) Insertbefore(value int) {
+
+	if a.val == nil {
+
+		newnode := &Node{data: value, Next: nil}
+
+		a.val = newnode
+		return
+
+	}
+
+	newnode := &Node{data: value, Next: a.val}
+
+	a.val = newnode
+}
+
+func (a *Mylist) filter(value int) {
+
+	current := a.val
+
+	for current != nil {
+
+		if value == current.data {
+
+			fmt.Println(current)
+			return
+		}
+
+		current = current.Next
+	}
+
+}
+
+func (a *Mylist) DeleteNode(value int) {
+
+	current := a.val
+
+	if current.data == value {
+
+		a.val = current.Next
+		return
+	}
+	
+	for current != nil {
+
+		if current.data == value {
+
+			a.val = current.Next
+			return
+
+		}
+
+		current = current.Next
+	}
+
+}
+func main() {
+
+	var vj Mylist
+
+	vj.InsertatBack(10)
+	vj.InsertatBack(20)
+	vj.InsertatBack(30)
+	vj.InsertatBack(40)
+	//vj.Insertbefore(40)
+	vj.View()
+	//vj.filter(30)
+	vj.DeleteNode(20)
+	fmt.Println("************")
+	vj.View()
+}
