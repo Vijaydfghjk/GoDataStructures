@@ -5,7 +5,9 @@
 4.view all
 5.Find and replace
 6.Delete
-7.See which is filter particular value 
+7.See which is filter particular value
+8. Addvalueaftervalue
+9.  Addvaluebefore
 
 
 
@@ -51,6 +53,54 @@ func (a *mylist) insertatfront(value int) {
 
 }
 
+func (a *mylist) Addvalueaftervalue(afterval, value int) {
+
+           //keypoint : looking for afterval value there Next : inserting a new node
+	current := a.top
+
+	for current != nil {
+
+		if current.data == afterval {
+
+			current.Next = &Node{data: value, Next: current.Next}
+
+			return
+
+		}
+
+		current = current.Next
+	}
+
+}
+
+func (a *mylist) Addbeforevalue(find, value int) {
+
+      //keypoint : looking for find node and update the find node example like {find is 10, address } , and {replace 5, address 10}
+
+	current := a.top
+
+	if current.data == find {
+		
+		new := &Node{data: value, Next: a.top}
+		a.top = new
+		return
+
+	}
+
+	for current != nil {
+
+		if current.Next.data == find {
+
+			fmt.Println("check", current.Next)
+			current.Next = &Node{data: value, Next: current.Next}
+			//  {find,address}
+			return
+		}
+
+		current = current.Next
+	}
+
+}
 func (a *mylist) Deletenode(value int) {
 
 	current := a.top
@@ -121,15 +171,20 @@ func (a *mylist) update(find, replace int) {
 func main() {
 
 	var vj mylist
-	fmt.Println("Before update")
+
 	vj.insertatback(10)
 	vj.insertatback(20)
 	vj.insertatfront(5)
+	vj.insertatback(25)
+	//vj.Addvalueaftervalue(20, 3)
+	//vj.view()
+	
+	vj.Addbeforevalue(10, 2)
 	vj.view()
-	fmt.Println("After update")
+
 	//vj.Deletenode(5)
-	vj.update(5, 7)
+	//vj.update(5, 7)
 	//vj.see(10)
-	vj.view()
+	//vj.view()
 
 }
