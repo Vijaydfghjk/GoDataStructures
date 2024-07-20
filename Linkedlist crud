@@ -1,3 +1,14 @@
+
+1. Get all values
+2.Insertvalue back
+3.Insertvalue front
+4.view all
+5.Find and replace
+6.Delete
+7.See which is filter particular value 
+
+
+
 package main
 
 import "fmt"
@@ -7,112 +18,118 @@ type Node struct {
 	Next *Node
 }
 
-type Mylist struct {
-	val *Node
+type mylist struct {
+	top *Node
 }
 
-func (a *Mylist) InsertatBack(value int) {
+func (a *mylist) insertatback(value int) {
 
-	mynode := &Node{data: value, Next: nil}
+	node := &Node{data: value, Next: nil}
 
-	if a.val == nil {
+	if a.top == nil {
 
-		a.val = mynode
+		a.top = node
 		return
 	}
 
-	current := a.val
+	current := a.top
 
 	for current.Next != nil {
 
 		current = current.Next
 	}
 
-	current.Next = mynode
-}
-
-func (a *Mylist) View() {
-
-	current := a.val
-
-	for current != nil {
-
-		fmt.Println(current.data)
-
-		current = current.Next
-	}
+	current.Next = node
 
 }
 
-func (a *Mylist) Insertbefore(value int) {
+func (a *mylist) insertatfront(value int) {
 
-	if a.val == nil {
+	new := &Node{data: value, Next: a.top}
 
-		newnode := &Node{data: value, Next: nil}
-
-		a.val = newnode
-		return
-
-	}
-
-	newnode := &Node{data: value, Next: a.val}
-
-	a.val = newnode
-}
-
-func (a *Mylist) filter(value int) {
-
-	current := a.val
-
-	for current != nil {
-
-		if value == current.data {
-
-			fmt.Println(current)
-			return
-		}
-
-		current = current.Next
-	}
+	a.top = new
 
 }
 
-func (a *Mylist) DeleteNode(value int) {
+func (a *mylist) Deletenode(value int) {
 
-	current := a.val
+	current := a.top
 
 	if current.data == value {
 
-		a.val = current.Next
-
+		a.top = current.Next
 		return
+
 	}
 
 	for current != nil {
 
 		if current.Next != nil && current.Next.data == value {
 
-			fmt.Println("Look", current.Next)
 			current.Next = current.Next.Next
-			return
 		}
 
 		current = current.Next
 	}
 
 }
+
+func (a *mylist) view() {
+
+	current := a.top
+
+	for current != nil {
+
+		fmt.Println(current.data)
+		current = current.Next
+	}
+
+}
+
+func (a *mylist) see(value int) {
+
+	current := a.top
+
+	for current != nil {
+
+		if current.data == value {
+
+			fmt.Println(current)
+		}
+
+		current = current.Next
+	}
+
+}
+
+func (a *mylist) update(find, replace int) {
+
+	current := a.top
+
+	for current != nil {
+
+		if current.data == find {
+
+			current.data = replace
+		}
+
+		current = current.Next
+	}
+
+}
+
 func main() {
 
-	var vj Mylist
+	var vj mylist
+	fmt.Println("Before update")
+	vj.insertatback(10)
+	vj.insertatback(20)
+	vj.insertatfront(5)
+	vj.view()
+	fmt.Println("After update")
+	//vj.Deletenode(5)
+	vj.update(5, 7)
+	//vj.see(10)
+	vj.view()
 
-	vj.InsertatBack(10)
-	vj.InsertatBack(20)
-	vj.InsertatBack(30)
-	vj.InsertatBack(40)
-	//vj.Insertbefore(40)
-	vj.View()
-	//vj.filter(30)
-	vj.DeleteNode(10)
-	fmt.Println("************")
-	vj.View()
 }
