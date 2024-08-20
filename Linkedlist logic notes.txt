@@ -1,0 +1,229 @@
+Linkedlist 
+
+type Node struct {
+	data int
+	Next *Node
+}
+type LinkedListTest struct {
+	top *Node
+}
+
+
+func (l *LinkedListTest) insertAtback(data int) {}
+
+    Goal : we have add the value in back
+ logic :
+
+      check  condition 1 :  if it is contain nil value below condition
+                  
+                            newnode:= &Node{data:data,Next:nil}
+                     if l.top == nil{
+
+                            l.top= newnode
+                        } 
+
+
+      check  condition 2 :
+                  incase l.top has already value we have to find the nil for that below loop
+
+           currect:= l.top
+           for current.Next!= nil{
+
+                  current = current.Next
+           }
+
+           this loop will end when nil found
+
+          current.next = newnode
+
+
+func (l *LinkedListTest) insertAtFront(data int) {}
+
+     Goal : we have add the value in front
+
+   check condition 1: if it is nil value use below condition
+
+                  if l.top == nil{
+
+                          newnode:=&Node{data:data,Next:nil} 
+                       l.top= newnode
+                 }
+
+   check condition 2: if l.top has the alreday value, that existing value moving to the back.
+
+                  newnode:= &Node{data:data,Next:l.top}
+
+                    l.top=newnode         
+
+          
+func (l *LinkedListTest) insertaftervalue(aftervalue, data int) {}
+
+
+
+Goal : finding the aftervalue if it is there then adding the after the node.
+
+                                newnode:= &Node{data:data,Next:nil}
+       current := l.top
+        check condition 1: we have to find the aftervalue variable throght be below loop.
+              for current != nil{
+
+                     if current.data == aftervalue{
+
+                         newnode.next = current.next                      
+                         current.next = newnode   
+                      }
+                      current = current.next
+             }
+              
+           here adding the 2 after 3 let's explain.
+
+             
+                  example 3 &address, 1 nil
+                                                                                    data   next
+                         if current.data == aftervalue // will find the 3 which is {3,    &address of another node which is 1}
+                        
+                            current.next = storing next which is &address of another node which is 1
+                             current.next = newnode // dute this condition we are adding newnode address which is {data:2,next:nil}
+                               newnode.next = current.next //{data:2 next: &{here storing the data:1,next:nil}}
+ 
+
+                         3,1   
+
+
+func (l *LinkedListTest) insertBeforeValue(before, data int) {}
+
+ 
+   Goal = finding the before variable and adding the value on before variable
+
+     check condition 1:this  before  variable is that first value use below condition
+           example out put 3,2,1 // here before is 3
+
+                 if l.top.data == before{
+
+                          newnode := &Node{data: data, Next: l.top}
+
+		l.top = newnode
+ 
+                  }
+
+
+       check condition 2 : that before variable in middle for that use the below condition
+                      
+                    example out put 4,2,1 // here before is 2
+
+
+                      currect:= l.top
+
+                   for  current.Next= nil{
+
+                             if current.Next.data == before{
+
+                                            newnode:=&Node{data:data,Next:current.next}
+                                  }
+                          current = current.Next
+
+                     }
+
+
+   
+
+func (l *LinkedListTest) Deletefront() {}
+
+ex 4,3,2,1
+Goal : we have to delet the lastout whcich is  4
+
+   if l.top != nil{
+
+          l.top = l.top.next
+
+      }
+
+func (l *LinkedListTest) Delatelaste() {}
+
+ex 4,3,2,1
+
+  Goal:  we are goona delet the 1 which is last.
+
+
+       check condition 1: for first is nill 
+                        if l.top == nil{
+                            
+                                fmt.Printf("Linked list is empty\n")
+
+                        }
+   check condition 2:   for second value  is nill 
+
+                      if l.top.next == nil{
+                         
+                             l.top = nil
+                      }
+                         
+                      current := l.top
+
+    check condition 3 : we are goona delete 1, but is storing 3 address of next
+ below loop will find the  {data:3, Next:&address of 1}
+
+             for current.next.next != nil{
+
+                     current= current.next
+                }                     
+
+                   current.next = nil // which is  current.next {daata:1,next:nil} we are removing
+    
+   
+
+
+func (l *LinkedListTest) Deleteaftervalue(value int) {}
+  ex 5 4 3 1 
+  value = 3 we need to delete 1
+
+  Goal: first we have to find the value variable  then we have skip the after the value node for that we are using below
+
+  for current != nil && current.data != value {
+
+		current = current.Next
+	}
+
+   here  current = {4, address}
+
+        current.next = current.next.next // removing 1
+
+func (l *LinkedListTest) DeleteBeforeValue(beforeValue int) {}
+
+   ex 	5 4 3 1 
+       value = 1
+        Goal: first we have to find the before node 
+
+
+for current.Next != nil {
+
+		if current.Next.data == beforeValue {
+
+			if previous == nil {
+
+				fmt.Printf("Node before value %d has data %d and will be deleted\n", beforeValue, current.data)
+				l.top = current.Next
+			} else {
+
+				fmt.Printf("Node before value %d has data %d and will be deleted\n", beforeValue, current.data)
+				previous.Next = current.Next // previous.Next is {3,address } replace by {1, nil} so
+			} // previous.Next going to save  {1, nil}
+			return
+		}
+
+		previous = current     //  4 adress  // 3 adress //
+		current = current.Next //
+
+	}
+ 
+
+
+
+
+    
+
+
+
+  
+
+

@@ -1,0 +1,44 @@
+package main
+
+import "fmt"
+
+func Demo(a []int) int {
+	//sorting
+	for i := 1; i < len(a); i++ {
+
+		j := i
+		for j >= 1 && a[j-1] > a[j] {
+
+			a[j-1], a[j] = a[j], a[j-1]
+			j--
+		}
+
+	}
+
+	if len(a) == 0 {
+
+		return 0
+	}
+
+	var k int = 1
+	// Finding the Number of dumlicate.
+	for i := 1; i < len(a); i++ {
+
+		if a[i] == a[i-1] {
+
+			a[k] = a[i]
+			k++
+		}
+
+	}
+	return k
+}
+
+func main() {
+
+	a := []int{1, 1, 2, 3, 1, 2}
+
+	m := Demo(a)
+	fmt.Println("Number of Dublicate :", m)
+
+}

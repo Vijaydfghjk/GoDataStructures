@@ -1,0 +1,41 @@
+package main
+
+import "fmt"
+
+func Flatten(nested []interface{}) []interface{} {
+
+	flattened := make([]interface{}, 0)
+
+	for _, i := range nested {
+
+		//fmt.Println(i)
+
+		//fmt.Println("i is:", i)
+		switch i.(type) {
+
+		case []interface{}:
+			fmt.Println("i is:", i.([]interface{}))
+
+			flattenedSubArray := Flatten(i.([]interface{})) // this function calling itself
+			// Flatten([]interface{}{1, 2, []interface{}{3}})
+			// Flatten([]interface{}{3})
+			// back to the first call adding 4
+			//fmt.Println()
+
+			flattened = append(flattened, flattenedSubArray...)
+			//fmt.Println(flattened)
+		default:
+			flattened = append(flattened, i)
+		}
+
+	}
+
+	return flattened
+}
+
+func main() {
+
+	gg := []interface{}{[]interface{}{1, 2, []interface{}{3}}, 4}
+	value := Flatten(gg)
+	fmt.Println(value)
+}

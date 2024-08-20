@@ -1,0 +1,100 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+func demo(a string) string {
+	var result strings.Builder
+	var char byte //  // alias for uint8, and it can represent values from 0 to 255.
+	for i := 0; i < len(a); i++ {
+
+		if a[i] >= 'a' && a[i] <= 'z' {
+
+			char = a[i]
+
+		} else if a[i] >= '0' && a[i] <= '9' {
+
+			num := ""
+			for i < len(a) && a[i] >= '0' && a[i] <= '9' {
+
+				num += string(a[i])
+				i++
+
+			}
+			i--
+
+			count, err := strconv.Atoi(num)
+
+			if err != nil {
+
+				panic(err)
+			}
+
+			for j := 0; j < count; j++ {
+
+				result.WriteByte(char)
+			}
+
+		}
+
+	}
+
+	return result.String()
+}
+
+func main() {
+
+	val := demo("a1b3")
+	fmt.Println("Value is :", val)
+}
+
+/*
+  Explanin
+
+  i loop will execute len = 4 so it will run 3
+
+  i = 0 char type is byte it can store alias value like uint8 0 to 255 or a[i]
+  char = v
+
+  i = 1  if a[i] >= 'a' && a[i] <= 'z' false
+
+
+     else if
+           i =1
+           for {i < len(a) && a[i] >= '0' && a[i] <= '9
+           1 <  4 which is 3
+          num = 1
+          when i = 2 getting false
+          last i value = 2
+         }
+     loop end
+     i-- here 2-1
+    i=1
+
+    count, err := strconv.Atoi(num) converting string to int
+
+    count =1
+
+    for j loop will run 1 time
+
+     as i said char contain one value which  is v it will print then loop i++ increment
+
+     i become 2  due to first loop i++ and now char will store b.
+
+     i =3 else if part work
+
+     num store 3
+     then increment i =4
+
+   end loop
+  i--
+
+  i= 3
+
+  count = 3
+
+  j loop print 3 time char value which is print 3 time abbb
+*/

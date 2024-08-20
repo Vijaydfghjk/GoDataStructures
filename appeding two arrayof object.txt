@@ -1,0 +1,66 @@
+package main
+
+import "fmt"
+
+type data struct {
+	name string
+	age  int
+}
+
+type dum struct {
+	place string
+	code  int
+}
+
+func format(a string, b int) []data {
+
+	var vj []data = []data{
+
+		{name: a, age: b},
+	}
+
+	return vj
+}
+
+func trying(ka []dum) {
+
+	rj := []data{}
+
+	for _, val := range ka {
+		temp := data{name: val.place, age: val.code}
+		rj = append(rj, temp)
+	}
+
+
+
+  // Another approach 
+
+   /*
+   approach 1:
+   newElement := data{val: s, val1: b}
+   return append([]data{}, newElement)
+
+  approach :2
+
+    vj = append(vj, data{val: s, val1: b})
+
+     return vj
+
+     
+   */
+
+	fmt.Println(rj)
+}
+
+func main() {
+
+	collect := format("Vijay", 20)
+	fmt.Println(collect)
+
+	vv := []dum{
+
+		{place: "Chennai", code: 600},
+	}
+
+	trying(vv)
+}

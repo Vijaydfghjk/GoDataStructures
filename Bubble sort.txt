@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	var n = []int{1, 39, 2, 9, 7, 54, 11}
+
+	var isdone = false
+
+	for !isdone {
+
+		isdone = true
+
+		i := 0
+
+		for i < len(n)-1 {
+
+			if n[i] > n[i+1] {
+
+				n[i], n[i+1] = n[i+1], n[i]
+				isdone = false
+			}
+			i++
+		}
+
+	}
+	fmt.Println(n)
+}
+
+
+
+// Since isdone is initially set to false, the condition !isdone evaluates to true because the logical negation of false is true. Therefore, the code block following the if statement will be executed, and the output will be:
+
+// not false =0, true =1
+// !isdone here value true 
+// 

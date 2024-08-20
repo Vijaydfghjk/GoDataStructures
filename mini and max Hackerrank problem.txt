@@ -1,0 +1,35 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func miniMaxSum(arr []int) {
+	totalSum := 0
+	for _, value := range arr {
+		totalSum += value
+	}
+
+	minSum := math.MaxInt64  // storing maximum int64 value
+	maxSum := math.MinInt64  // storing minimum int64 value
+
+	for _, value := range arr {
+		currentSum := totalSum - value
+		if currentSum < minSum { // minSum = 14
+			minSum = currentSum // minSum = 13
+		}
+		if currentSum > maxSum {
+			//currentSum          //13
+			maxSum = currentSum // maxSum =14
+
+		}
+	}
+
+	fmt.Printf("%d %d\n", minSum, maxSum)
+}
+
+func main() {
+	arr := []int{1, 2, 3, 4, 5}
+	miniMaxSum(arr)
+}

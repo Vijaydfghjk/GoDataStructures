@@ -1,0 +1,210 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+	Next *Node
+}
+type LinkedListTest struct {
+	top *Node
+}
+
+func (l *LinkedListTest) insertAtback(data int) {
+
+	newnode := &Node{data: data, Next: nil}
+
+	if l.top == nil {
+
+		l.top = newnode //l.top &{data,nil}
+		return
+	}
+
+	current := l.top // current & {data,nil}
+
+	for current.Next != nil {
+
+		current = current.Next
+
+	}
+
+	current.Next = newnode // current is : &{1 0xc000084020}
+}
+
+func (l *LinkedListTest) insertAtFront(data int) {
+
+	if l.top == nil {
+
+		newnode := &Node{data: data, Next: nil}
+
+		l.top = newnode
+		return
+	}
+
+	newnode := &Node{data: data, Next: l.top}
+
+	l.top = newnode
+
+}
+
+func (l *LinkedListTest) insertaftervalue(aftervalue, data int) {
+
+	newnode := &Node{data: data, Next: nil}
+
+	current := l.top
+
+	for current != nil {
+
+		if current.data == aftervalue {
+
+			newnode.Next = current.Next
+			current.Next = newnode
+
+			return
+		}
+		current = current.Next
+	}
+	fmt.Printf("Cannot insert node, after value %d doesn't exist", aftervalue)
+	fmt.Println()
+}
+
+func (l *LinkedListTest) insertBeforeValue(before, data int) {
+
+	if l.top.data == before {
+
+		newnode := &Node{data: data, Next: l.top}
+
+		l.top = newnode
+	}
+
+	current := l.top
+
+	for current.Next != nil {
+
+		if current.Next.data == before {
+
+			newnode := &Node{data: data, Next: current.Next}
+
+			current.Next = newnode
+			return
+		}
+
+		current = current.Next
+	}
+}
+
+func (l *LinkedListTest) view() {
+
+	var current *Node = l.top
+
+	for current != nil {
+
+		fmt.Printf("%d ", current.data)
+		current = current.Next
+	}
+	fmt.Println()
+}
+
+func (l *LinkedListTest) Deletefront() {
+
+	if l.top != nil {
+
+		l.top = l.top.Next
+		fmt.Printf("Head node of linked list has been deleted\n")
+		return
+	}
+}
+
+func (l *LinkedListTest) Delatelaste() {
+	if l.top == nil {
+
+		fmt.Printf("Linked list is empty\n")
+	}
+
+	if l.top.Next == nil {
+
+		l.top = nil
+	}
+	current := l.top
+	for current.Next.Next != nil {
+
+		current = current.Next
+		fmt.Println(current)
+	}
+
+	current.Next = nil
+}
+
+func (l *LinkedListTest) Deleteaftervalue(value int) {
+
+	current := l.top
+
+	for current != nil && current.data != value {
+
+		current = current.Next
+	}
+
+	if current == nil {
+		fmt.Printf("Node with after value %d doesn't exist\n", value)
+		return
+	}
+
+	if current.Next == nil {
+		fmt.Printf("Node with after value %d is the last node\n", value)
+		return
+	}
+
+	current.Next = current.Next.Next
+
+}
+
+func (l *LinkedListTest) DeleteBeforeValue(beforeValue int) {
+
+	var previous *Node
+
+	current := l.top
+
+	if current == nil || current.Next == nil {
+		fmt.Printf("Node with before value %d doesn't exist\n", beforeValue)
+		return
+	}
+
+	for current.Next != nil {
+
+		if current.Next.data == beforeValue {
+
+			if previous == nil {
+
+				fmt.Printf("Node before value %d has data %d and will be deleted\n", beforeValue, current.data)
+				l.top = current.Next
+			} else {
+
+				fmt.Printf("Node before value %d has data %d and will be deleted\n", beforeValue, current.data)
+				previous.Next = current.Next // previous.Next is {3,address } replace by {1, nil} so
+			} // previous.Next going to save  {1, nil}
+			return
+		}
+
+		previous = current     //  4 adress  // 3 adress //
+		current = current.Next //
+
+	}
+
+}
+
+func main() {
+
+	var vj LinkedListTest
+
+	vj.insertAtFront(1)
+	vj.insertAtFront(3)
+	vj.insertAtFront(4)
+	vj.insertAtFront(5)
+	//vj.insertBeforeValue(1, 2)
+	//vj.insertaftervalue(1, 5)
+	//vj.Deletefront()
+	//vj.Delatelaste()
+	//vj.Deleteaftervalue(4)
+	//vj.DeleteBeforeValue(1)
+	vj.view()
+}
