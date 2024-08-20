@@ -1,0 +1,68 @@
+// main package has examples shown
+// in Go Data Structures and algorithms book
+package main
+
+// importing fmt package
+import (
+	"fmt"
+	"sort"
+)
+
+// findElement method given array and k element
+func findElement(arr [10]int, k int) (bool, int) {
+
+	convslice := arr[:]
+	sort.Ints(convslice)
+	fmt.Println(convslice)
+
+	//l := len(convslice) - 1
+
+	//max := convslice[l]
+	//min := convslice[0]
+
+	low := 0
+	high := len(convslice)
+	for i := 0; i < len(convslice); i++ {
+		fmt.Println(i)
+		mid := (high + low) / 2
+
+		if convslice[mid] == k {
+
+			return true, mid
+		} else if convslice[mid] < k {
+			//fmt.Println(mid)
+			low = mid + 1
+		} else if convslice[mid] > k {
+
+			high = mid - 1
+		}
+
+	}
+
+	return false, 0
+}
+
+
+func main() {
+
+	var arr = [10]int{1, 4, 7, 8, 3, 9, 2, 4, 1, 8}
+
+	check2, val := findElement(arr, 9)
+
+	fmt.Println(check2, val)
+
+}
+
+/*
+
+for increment low  = mid +1
+
+  mid = high + low / 2  -> mid wil increase
+
+for decrement high = mid -1
+
+ mid = high + low / 2  -> mid wil decrease
+
+
+*/
+

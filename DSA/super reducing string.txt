@@ -1,0 +1,135 @@
+
+Hacker rank question 
+
+we have to remove the pair word 
+
+input : 'aab' output : b
+input : 'abba' output: Empty string
+
+input : 'aaabccddd' output : abd
+
+input : 'vihhv' output : 'viv'
+
+my own ans :
+
+Below logic has problem it will remove where two times appear the character 
+input : 'vihhv' output : 'i' but actuallly we have remove the pair.
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func Demo(s string) string {
+
+	mybytes := []byte(s)
+
+	sort.Slice(mybytes, func(i, j int) bool {
+
+		return mybytes[i] < mybytes[j]
+	})
+
+	//fmt.Println(mybytes)
+
+	mine := make(map[int]byte)
+
+	for i, v := range mybytes {
+
+		mine[i] = v
+
+	}
+	//fmt.Println(mine)
+
+	for i, _ := range mine {
+
+		if mine[i] == mine[i+1] {
+
+			delete(mine, i)
+			delete(mine, i+1)
+		}
+
+	}
+
+	fmt.Println(mine)
+
+	actual := ""
+	for _, v := range mine {
+
+		actual += string(v)
+	}
+
+	if actual == "" {
+
+		return "Empty String"
+	}
+
+	return actual
+}
+func main() {
+
+	collect := Demo("vikk")
+	fmt.Println("collect is :", collect)
+}
+
+
+
+*************************
+
+
+
+
+
+Reduce a string of lowercase characters in range ascii[‘a’..’z’]by doing a series of operations. In each operation, select a pair of adjacent letters that match, and delete them.
+
+Delete as many characters as possible using this method and return the resulting string. If the final string is empty, return Empty String
+
+Example.
+
+
+aab shortens to b in one operation: remove the adjacent a characters.
+
+
+Remove the two 'b' characters leaving 'aa'. Remove the two 'a' characters to leave ''. Return 'Empty String'.
+
+Function Description
+
+Complete the superReducedString function in the editor below.
+
+superReducedString has the following parameter(s):
+
+string s: a string to reduce
+
+
+
+
+
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func superReducedString(s string) string {
+	var index int = 1
+	for index < len(s) {
+		if s[index] == s[index-1] {
+			s = s[0:index-1] + s[index+1:]
+			if index != 1 {
+				index--
+			}
+		} else {
+			index++
+		}
+		if len(s) == 0 {
+			return "Empty String"
+		}
+	}
+	return s
+}
+
+func main() {
+
+	collect := superReducedString("abba")
+	fmt.Println(collect)
+}
