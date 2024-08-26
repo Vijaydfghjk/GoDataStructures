@@ -1,0 +1,170 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+
+	Next *Node
+}
+
+type list struct {
+	Top *Node
+}
+
+func (a *list) insertback(val int) {
+
+	new := &Node{data: val, Next: nil}
+	if a.Top == nil {
+
+		a.Top = new
+		return
+
+	}
+
+	current := a.Top
+
+	for current.Next != nil {
+
+		current = current.Next
+	}
+
+	current.Next = new
+
+}
+
+func (a *list) insertfront(val int) {
+
+	if a.Top == nil {
+
+		a.Top = &Node{data: val, Next: nil}
+		return
+
+	}
+
+	a.Top = &Node{data: val, Next: a.Top}
+
+}
+
+func (a *list) insertbeforeval(before, val int) {
+
+	new := &Node{data: val, Next: nil}
+
+	if a.Top.data == before {
+
+		new.Next = a.Top
+		a.Top = new
+		return
+
+	}
+
+	current := a.Top
+
+	for current.Next != nil {
+
+		if current.Next.Next.data == before {
+
+			new.Next = current.Next
+			current.Next = new
+			return
+		}
+
+		current = current.Next
+	}
+
+}
+
+func (a *list) inserafterval(after, val int) {
+
+	new := &Node{data: val, Next: nil}
+
+	if a.Top.data == after {
+
+		new.Next = a.Top.Next
+		a.Top.Next = new
+		return
+	}
+
+	current := a.Top
+
+	for current.Next != nil {
+
+		if current.Next.data == after {
+
+			new.Next = current.Next.Next
+			current.Next.Next = new
+			return
+		}
+
+		current = current.Next
+	}
+
+}
+func (a *list) Delete(val int) {
+
+	if a.Top.data == val {
+
+		a.Top = a.Top.Next
+
+		return
+	}
+	current := a.Top
+
+	for current.Next != nil {
+
+		if current.Next.data == val {
+
+			current.Next = current.Next.Next
+			return
+		}
+
+		current = current.Next
+	}
+
+}
+
+func (a *list) Deletebefore(before, val int) {
+
+	current := a.Top
+
+	for current.Next != nil {
+
+		if current.Next.Next.Next.data == before {
+
+			current.Next.Next = current.Next.Next.Next
+			return
+		}
+
+		current = current.Next
+	}
+
+}
+func (a *list) View() {
+
+	current := a.Top
+
+	for current != nil {
+
+		fmt.Printf("Value -> %v", current.data)
+		current = current.Next
+	}
+
+}
+
+func main() {
+
+	var vj list
+
+	vj.insertback(10)
+	vj.insertback(11)
+	vj.insertback(13)
+	vj.insertfront(1)
+	//vj.Delete(1)
+	vj.insertbeforeval(1, 0)
+	vj.inserafterval(0, 2)
+	vj.View()
+	vj.Deletebefore(10, 1)
+	fmt.Println()
+	vj.View()
+
+}
