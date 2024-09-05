@@ -1,0 +1,58 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func threeSumClosest(nums []int, target int) int {
+
+	n := len(nums)
+	if n < 3 {
+		return 0 // Edge case: not enough numbers
+	}
+
+	// Sort the array
+	sort.Ints(nums)
+
+	closest := nums[0] + nums[1] + nums[2]
+
+	for i := 0; i < n-2; i++ {
+		left, right := i+1, n-1
+		for left < right {
+			sum := nums[i] + nums[left] + nums[right]
+			if abs(sum-target) < abs(closest-target) {
+				closest = sum
+			}
+			if sum < target {
+				left++
+			} else if sum > target {
+				right--
+			} else {
+				return sum
+			}
+		}
+	}
+
+	return closest
+}
+
+// Helper function to calculate absolute value
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+
+}
+
+func main() {
+
+	arr := []int{1, 4, 7, 8, 3}
+	tar := 18
+	get := threeSumClosest(arr, tar)
+	fmt.Println(get)
+
+}
