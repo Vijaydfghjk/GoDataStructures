@@ -1,3 +1,6 @@
+
+// Counting the maximum dublicates
+
 package main
 
 import "fmt"
