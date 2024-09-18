@@ -1,0 +1,36 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func Demo(arr []int) {
+
+	temp := []int{}
+
+	sort.Ints(arr)
+	fmt.Println(arr)
+	for i := 0; i < len(arr)-1; i++ {
+
+		if arr[i] != arr[i+1] {
+
+			temp = append(temp, arr[i])
+		}
+
+	}
+	if temp[len(temp)-1] != arr[len(arr)-1] {
+
+		temp = append(temp, arr[len(arr)-1])
+	}
+	fmt.Println("Unique", temp)
+}
+
+func main() {
+
+	arr := []int{2, 3, 4, 5, 5, 5, 6, 1, 7, 7, 7}
+	Demo(arr)
+
+}

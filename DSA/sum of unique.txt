@@ -1,0 +1,37 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import (
+	"fmt"
+)
+
+func Demo(arr []int) {
+	count := 0
+	var check map[int]bool = make(map[int]bool)
+
+	for _, v := range arr {
+
+		check[v] = true
+
+	}
+
+    
+	vj := check[i]
+		
+	fmt.Println("checking", vj)
+	for get := range check {
+
+		count += get
+
+	}
+
+	fmt.Println(count)
+
+}
+func main() {
+
+	arr := []int{1, 2, 3, 2, 4, 3}
+	Demo(arr)
+
+}
