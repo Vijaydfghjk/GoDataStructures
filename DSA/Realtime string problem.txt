@@ -1,0 +1,43 @@
+package main
+
+import (
+"fmt"
+"strconv"
+"strings"
+)
+
+func main() {
+
+data := []string{
+
+"Vijay-23",
+"Vijay-22",
+"Vijay-20",
+"Raj-18",
+}
+
+var mine map[string]int = make(map[string]int)
+dublicate := make(map[string]int)
+
+for _, take := range data {
+
+get := strings.Split(take, "-")
+
+value, err := strconv.Atoi(get[1])
+if err != nil {
+
+fmt.Println("Not able to convert")
+}
+mine[get[0]] += value
+
+dublicate[get[0]]++
+
+}
+
+for name, _ := range mine {
+
+avg := float64(mine[name]) / float64(dublicate[name])
+fmt.Printf("Average is :%0.2f\n", avg)
+}
+
+}
