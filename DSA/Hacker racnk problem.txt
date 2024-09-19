@@ -1,0 +1,61 @@
+
+
+arr :=[]int32{73,67,40,33}
+
+out put : 75,67,40,33
+
+1. array value 73 and next multiple of 5 is 75 so 73 - 75  should be <3
+
+    value is 2 so take rounded value 75
+
+
+2.array value 33 next multiple of 5 is 35 and 35 -33  value = 2 < 3
+
+one rule is so take rounded value 35 and rounded should be >=40 if not 
+take actual value 33
+
+3. array value 67  next multiple of 5 is 65 so 65-67 = 2 < 3
+   and 65 is more than >=40
+   take rounded value 65. 
+
+package main
+
+import "fmt"
+
+func gradingStudents(grades []int32) []int32 {
+
+	temp := []int32{}
+
+	k := int32(5)
+	for _, v := range grades {
+
+		temp1 := v / k
+
+		temp1 = temp1 * k
+		if v > temp1 {
+
+			temp1 = temp1 + k
+
+		}
+
+		final := temp1 - v
+
+		if final < 3 && temp1 >= 40 {
+
+			temp = append(temp, temp1)
+		} else {
+
+			temp = append(temp, v)
+		}
+
+	}
+
+	return temp
+}
+func main() {
+
+	val := []int32{73, 67, 38, 33}
+	get := gradingStudents(val)
+
+	fmt.Println(get)
+}
