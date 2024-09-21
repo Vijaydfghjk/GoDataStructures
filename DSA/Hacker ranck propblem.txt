@@ -1,0 +1,62 @@
+There is a sequence of words in CamelCase as a string of letters, , having the following properties:
+
+It is a concatenation of one or more words consisting of English letters.
+All letters in the first word are lowercase.
+For each of the subsequent words, the first letter is uppercase and rest of the letters are lowercase.
+Given , determine the number of words in .
+
+
+s = "oneTwoThree"
+
+out put is : 3
+
+calculate each word
+
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func camelcase(s string) int32 {
+
+	k := ""
+	for i := 0; i < len(s); i++ {
+
+		if 'A' <= s[i] && s[i] <= 'Z' {
+
+			t := "-"
+			k += t
+
+		}
+
+		k += string(s[i])
+	}
+
+	get := strings.Split(k, "-")
+
+	return int32(len(get))
+}
+
+func main() {
+
+	count := camelcase("oneTwoThree")
+	fmt.Println(count)
+}
+
+
+// using library 
+
+
+func camelcase(s string) int32 {
+	var count int32 = 1
+	for _, char := range s {
+		if unicode.IsUpper(char) {
+			count++
+		}
+	}
+	return count
+
+}
