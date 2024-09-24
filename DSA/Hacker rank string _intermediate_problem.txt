@@ -1,0 +1,66 @@
+
+
+Problem Statement: Determine if a string is "valid," meaning all characters appear the same number of times, or if by removing one character, the remaining characters would all have the same frequency. Return "YES" if valid, otherwise return "NO".
+
+
+Input:  s = "abcc"
+Output: "YES"
+
+
+Frequencies: a = 1, b = 1, c = 2
+
+By removing one 'c', the remaining characters ('a', 'b', and 'c') all have the same frequency (1). So, the string is valid.
+
+
+
+Input: s = "aabbcd"
+Output: "NO"
+
+
+Frequencies: a = 2, b = 2, c = 1, d = 1
+No way to remove just one character to make the remaining frequencies the same, so the string is not valid.
+
+
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func isValid(s string) string {
+	check := make(map[rune]int)
+	temp := []int{}
+
+	// Count frequency of each character
+	for _, v := range s {
+		check[v]++
+	}
+
+	// Collect the frequencies
+	for _, v := range check {
+		temp = append(temp, v)
+	}
+
+	// Sort the frequencies
+	sort.Ints(temp)
+	fmt.Println(temp)
+	// Check if all frequencies are the same
+	if temp[0] == temp[len(temp)-1] {
+		return "YES"
+	}
+
+	// Check if we can remove one occurrence to make them the same
+	if (temp[0] == 1 && temp[1] == temp[len(temp)-1]) || (temp[len(temp)-1] == temp[len(temp)-2]+1 && temp[0] == temp[len(temp)-2]) {
+		return "YES"
+	}
+
+	return "NO"
+}
+
+func main() {
+
+	get := isValid("aabbc")
+	fmt.Println(get)
+
+}
