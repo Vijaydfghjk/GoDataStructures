@@ -1,0 +1,51 @@
+Sherlock and the Valid String
+
+s = "abc" // OUTPUT yes a,b,c all are one time
+s = "abccc" // we can remove one time since c 3 time after remove one time
+            a:1b:1c :2 out put NO 
+
+
+
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func isValid(s string) string {
+	check := make(map[rune]int)
+	temp := []int{}
+
+	// Count frequency of each character
+	for _, v := range s {
+		check[v]++
+	}
+
+	// Collect the frequencies
+	for _, v := range check {
+		temp = append(temp, v)
+	}
+
+	// Sort the frequencies
+
+	sort.Ints(temp)
+	fmt.Println(temp)
+	// Check if all frequencies are the same
+	if temp[0] == temp[len(temp)-1] {
+		return "YES"
+	}
+
+	// Check if we can remove one occurrence to make them the same
+	if (temp[0] == 1 && temp[1] == temp[len(temp)-1]) || (temp[len(temp)-1] == temp[len(temp)-2]+1 && temp[0] == temp[len(temp)-2]) {
+		return "YES"
+	}
+
+	return "NO"
+
+}
+func main() {
+
+	collect := isValid("abcdefghhgfedecba")
+	fmt.Println("collect is :", collect)
+}
