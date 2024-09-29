@@ -1,0 +1,49 @@
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+
+
+Input: s = " "
+Output: true
+
+
+func isPalindrome(s string) bool {
+
+    	value := ""
+
+	input := regexp.MustCompile(`[^a-zA-Z0-9]+`)
+	value += input.ReplaceAllString(s, "")
+
+	if len(value) == 0 {
+
+		return true
+	}
+
+	mystr := ""
+	for _, val := range value {
+
+		lowerChar := unicode.ToLower(val)
+
+		mystr += string(lowerChar)
+	}
+
+	k := len(mystr) - 1
+	for i := 0; i < len(mystr); i++ {
+
+		if mystr[i] != mystr[k] {
+
+			return false
+		}
+		k--
+
+	}
+	return true
+
+    
+}
