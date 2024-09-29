@@ -1,0 +1,44 @@
+Grading Students
+
+
+
+input arr :=[]int{73,67,38,33}
+
+1.rule 73 of next 5 series is 75 75-73 = 2 < 3 so take 75
+2. rule 33 of next 5 series is 35 less than 35 < 40 so take 33
+
+
+
+
+
+func gradingStudents(grades []int32) []int32 {
+    
+    temp := []int32{}
+
+    k := int32(5)
+    for _, v := range grades {
+
+        temp1 := v / k
+
+        temp1 = temp1 * k
+        if v > temp1 {
+
+            temp1 = temp1 + k
+
+        }
+
+        final := temp1 - v
+
+        if final < 3 && temp1 >= 40 {
+
+            temp = append(temp, temp1)
+        } else {
+
+            temp = append(temp, v)
+        }
+
+    }
+
+    return temp
+
+}

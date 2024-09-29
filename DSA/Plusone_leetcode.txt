@@ -1,0 +1,70 @@
+
+Question 
+
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+
+
+Input: digits = [9,9] / output[1,0,0]
+
+input []int{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}
+
+output 
+
+Total 113 Test case
+
+
+func plusOne(digits []int) []int {
+
+   
+	temp := []int{}
+	mine := ""
+
+  
+    if len(digits) != 1 && digits[len(digits)-1] != 9 {
+
+		digits[len(digits)-1] = digits[len(digits)-1] + 1
+		return digits
+	}
+
+   if len(digits) > 19 && digits[len(digits)-1] == 9 && digits[len(digits)-2] != 9 {
+
+		digits[len(digits)-1] = 0
+		digits[len(digits)-2] = digits[len(digits)-2] + 1
+
+		return digits
+	}else if len(digits) > 19 {
+
+		for i:=0;i<len(digits);i++ {
+
+			if digits[i] == 9 {
+
+				digits[i] = 0
+				digits[0] = 1
+			}
+              
+		}
+          digits = append(digits,0)
+		return digits
+	}
+	for _, v := range digits {
+
+		mine += strconv.Itoa(v)
+
+	}
+
+	value, _ := strconv.Atoi(mine)
+
+	value = value + 1
+	mine2 := strconv.Itoa(value)
+
+	for _, val := range mine2 {
+
+		actual, _ := strconv.Atoi(string(val))
+		temp = append(temp, actual)
+	}
+	return temp
+}

@@ -1,0 +1,28 @@
+Two Strings
+
+s1 = "and"
+s2 "art"
+
+common is a should return yes
+
+
+func twoStrings(s1 string, s2 string) string {
+
+  
+    charSet := make(map[rune]bool)
+
+    for _, char := range s1 {
+        charSet[char] = true
+    }
+
+    for _, char := range s2 {
+        if charSet[char] {
+            return "YES"
+        }
+    }
+
+    return "NO"
+      
+
+
+}
