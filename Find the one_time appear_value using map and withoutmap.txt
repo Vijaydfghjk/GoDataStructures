@@ -1,0 +1,84 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package main
+
+import "fmt"
+
+// Demo function to find the value that appears only once using brute force
+func Demo(arr []int) {
+	n := len(arr)
+
+	// Iterate through each element
+
+	for i := 0; i < n; i++ {
+
+		count := 0
+
+		for j := 0; j < n; j++ {
+
+			if arr[i] == arr[j] {
+
+				count++
+			}
+
+		}
+
+		if count == 1 {
+
+			fmt.Println("One Time appear is ", arr[i])
+			return
+		}
+
+	}
+
+}
+
+func main() {
+	arr := []int{2, 2, 2, 3, 4, 5, 4, 5}
+	Demo(arr) // Expected output: The element that appears only once is: 1
+}
+
+
+
+
+
+
+
+
+
+
+
+
+func Demo(arr []int) {
+    frequencyMap := make(map[int]int)
+
+    // Step 1: Count the occurrences of each element
+    for _, num := range arr {
+        frequencyMap[num]++
+    }
+
+    // Step 2: Find the element that appears only once
+    for _, num := range arr {
+        if frequencyMap[num] == 1 {
+            fmt.Println("The element that appears only once is:", num)
+            return
+        }
+    }
+
+    // If no element appears only once
+    fmt.Println("No element appears only once.")
+}
