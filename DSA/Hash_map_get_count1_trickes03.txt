@@ -1,0 +1,33 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func check(s string) rune {
+
+	count := make(map[rune]int)
+
+	for _, ch := range s {
+
+		count[ch]++
+
+	}
+
+	for _, ch := range s {
+
+		if count[ch] == 1 {
+
+			return ch
+		}
+
+	}
+	return '-'
+}
+func main() {
+
+	get := check("vikiv")
+
+	fmt.Println(string(get))
+
+}
