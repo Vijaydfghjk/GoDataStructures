@@ -1,0 +1,53 @@
+// You can edit this code!
+// Click here and start typing.
+
+
+Use case: Optimization problems like interval scheduling, profit maximization, or selecting subsets.
+
+Concept: Sort the data first and use a greedy decision-making process to maximize or minimize the desired value.
+
+
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func minMeetingRooms(intervals [][]int) int {
+
+	start := []int{}
+	end := []int{}
+
+	for _, get := range intervals {
+
+		start = append(start, get[0])
+		end = append(end, get[1])
+	}
+
+	sort.Ints(start)
+	sort.Ints(end)
+
+	rooms, ends := 0, 0
+	fmt.Println(start)
+	for _, s := range start {
+
+		if s < end[ends] {
+
+			rooms++
+		}
+	}
+
+	return rooms
+}
+func main() {
+
+	arr := [][]int{
+
+		{6, 2, 1},
+		{0, 4, 2},
+	}
+
+	get := minMeetingRooms(arr)
+	fmt.Println(get)
+}
