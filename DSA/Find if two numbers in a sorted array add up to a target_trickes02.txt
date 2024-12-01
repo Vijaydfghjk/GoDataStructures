@@ -1,0 +1,45 @@
+
+
+Example: Find if two numbers in a sorted array add up to a target
+
+
+arr := []int{3, 4, 5}
+get := twoSum(arr, 7)
+
+
+
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func twoSum(nums []int, target int) bool {
+
+	left, right := 0, len(nums)-1
+
+	for left < right {
+
+		sum := nums[left] + nums[right]
+
+		if sum == target {
+
+			return true
+		} else if sum < target {
+
+			left++
+		} else {
+
+			right--
+		}
+
+	}
+	return false
+}
+
+func main() {
+
+	arr := []int{3, 4, 5}
+	get := twoSum(arr, 7)
+	fmt.Println(get)
+}
